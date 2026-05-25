@@ -172,10 +172,10 @@ class ProwlarrIndexer(_PluginBase):
                     indexer_dict, is_xxx_only = self._build_indexer_dict(indexer_data)
 
                     # 过滤掉公开站点，保留私有和半公开站点
-                    if indexer_dict.get("public", False):
-                        logger.info(f"【{self.plugin_name}】过滤公开站点：{indexer_dict.get('name', 'Unknown')}")
-                        filtered_count += 1
-                        continue
+                    # if indexer_dict.get("public", False):
+                    #     logger.info(f"【{self.plugin_name}】过滤公开站点：{indexer_dict.get('name', 'Unknown')}")
+                    #     filtered_count += 1
+                    #     continue
 
                     # 过滤掉只有XXX分类的索引器
                     if is_xxx_only:
@@ -188,7 +188,7 @@ class ProwlarrIndexer(_PluginBase):
                     logger.error(f"【{self.plugin_name}】构建索引器失败：{str(e)}")
                     continue
 
-            logger.info(f"【{self.plugin_name}】成功获取 {len(self._indexers)} 个索引器（私有+半公开），过滤掉 {filtered_count} 个公开站点，{xxx_filtered_count} 个XXX专属站点")
+            logger.info(f"【{self.plugin_name}】成功获取 {len(self._indexers)} 个索引器，过滤掉 {xxx_filtered_count} 个XXX专属站点")
             return True
 
         except Exception as e:
